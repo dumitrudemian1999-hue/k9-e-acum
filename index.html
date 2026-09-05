@@ -181,28 +181,12 @@ function saveExactSheet(jid){
  j.problem=s.problem;j.diagnosis=s.finding;j.obs=s.obs;if(s.kmout)c.km=Number(s.kmout)||c.km;save();alert('Fișa a fost salvată.')}
 function printExactSheet(jid){
  saveExactSheet(jid);
- const s=db.jobs.find(x=>x.id===jid)?.sheet||{}, c=db.cars.find(x=>x.id===db.jobs.find(x=>x.id===jid).carId), cl=db.clients.find(x=>x.id===db.jobs.find(x=>x.id===jid).clientId);
+ const j=db.jobs.find(x=>x.id===jid), s=j?.sheet||{}, c=db.cars.find(x=>x.id===j?.carId), cl=db.clients.find(x=>x.id===j?.clientId);
  const overlay=(cls,val)=>`<div class="ptext ${cls}">${esc(val||'')}</div>`;
- const checked=(x)=>s.checks?.[x]?'☑':'';
  const w=window.open('','_blank');if(!w)return;
- w.document.write(`<html><head><title>K-9 E ACUM - Act de constatare</title><style>
- @page{size:A4 portrait;margin:0}html,body{margin:0;padding:0;width:210mm;height:297mm}body{font-family:Arial,sans-serif}.p{position:relative;width:210mm;height:297mm}.p img{position:absolute;inset:0;width:210mm;height:297mm}.ptext{position:absolute;font-size:8pt;font-weight:600;overflow:hidden}.docno{left:169mm;top:15mm;width:30mm}.date{left:169mm;top:27mm;width:30mm}.kmin{left:169mm;top:38mm;width:30mm}.kmout{left:169mm;top:46mm;width:30mm}.client{left:20mm;top:54mm;width:75mm}.phone{left:20mm;top:61mm;width:45mm}.plate{left:155mm;top:62mm;width:35mm}.vin{left:20mm;top:68mm;width:75mm}.problem{left:75mm;top:92mm;width:60mm;height:28mm}.finding{left:142mm;top:92mm;width:58mm;height:28mm}.other{left:25mm;top:202mm;width:70mm;height:17mm}.obs{left:137mm;top:202mm;width:63mm;height:30mm}.mechanic{left:143mm;top:274mm;width:50mm}.testkm{left:90mm;top:245mm;width:25mm}.work{position:absolute;font-size:7pt;font-weight:bold}.final{position:absolute;font-size:7pt;font-weight:bold}
-.exact-toolbar{display:flex;gap:7px;margin-bottom:10px;position:sticky;top:60px;z-index:20}.exact-toolbar button{flex:1}
-.exact-wrap{width:100%;overflow:auto;background:#dfe3e8;padding:8px;border-radius:14px}
-.exact-sheet{position:relative;width:1024px;max-width:none;aspect-ratio:1024/1536;margin:auto;background:#fff}
-.exact-bg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.ov-check{position:absolute;width:25px;height:25px;z-index:4;display:block}
-.ov-check input{width:24px!important;height:24px!important;margin:0!important;accent-color:#d71920}
-.ov-text,.ov-area{position:absolute;z-index:5;background:#ffffffd9!important;border:1px solid #777!important;border-radius:4px!important;padding:4px!important;font-size:15px!important;color:#111!important}
-.ov-text[readonly]{background:#f1f1f1d9!important}.ov-area{resize:none}
-.exact-sheet .docno{left:82%;top:9.5%;width:15%}.exact-sheet .date{left:82%;top:15.5%;width:15%}.exact-sheet .kmin{left:82%;top:21.2%;width:15%}.exact-sheet .kmout{left:82%;top:25.8%;width:15%}
-.exact-sheet .clientname{left:8%;top:16.7%;width:39%}.exact-sheet .phone{left:8%;top:18.9%;width:22%}.exact-sheet .email{left:27%;top:18.9%;width:20%}.exact-sheet .address{left:8%;top:21.1%;width:39%}
-.exact-sheet .plate{left:76%;top:18.9%;width:18%}.exact-sheet .vin{left:8%;top:23.2%;width:39%}
-.exact-sheet .problem{left:36%;top:25.7%;width:28%;height:9%}.exact-sheet .finding{left:67%;top:25.7%;width:27%;height:9%}
-.exact-sheet .other{left:3%;top:69.5%;width:29%;height:7%}.exact-sheet .obs{left:66%;top:69.5%;width:29%;height:11%}
-.exact-sheet .mechanic{left:75%;top:91%;width:19%}.exact-sheet .testkm{left:48%;top:83%;width:10%}
-@media(max-width:650px){.exact-wrap{padding:4px}.exact-sheet{transform-origin:top left}}
-</style></head><body><div class="p"><img src="fisa-model.jpg">${overlay('docno',s.docno)}${overlay('date',s.docdate)}${overlay('kmin',s.kmin)}${overlay('kmout',s.kmout)}${overlay('client',cl?.name)}${overlay('phone',cl?.phone)}${overlay('plate',c?.plate)}${overlay('vin',c?.vin)}${overlay('problem',s.problem)}${overlay('finding',s.finding)}${overlay('other',s.otherwork)}${overlay('obs',s.obs)}${overlay('mechanic',s.mechanic)}${overlay('testkm',s.testkm)}<script>window.onload=()=>window.print()<\/script></div></body></html>`);w.document.close()
+ const html=`<html><head><title>K-9 E ACUM - Act de constatare</title><style>
+ @page{size:A4 portrait;margin:0}html,body{margin:0;padding:0;width:210mm;height:297mm}body{font-family:Arial,sans-serif}.p{position:relative;width:210mm;height:297mm}.p img{position:absolute;inset:0;width:210mm;height:297mm;image-rendering:auto}.ptext{position:absolute;font-size:8pt;font-weight:600;overflow:hidden;white-space:pre-wrap}.docno{left:169mm;top:15mm;width:30mm}.date{left:169mm;top:27mm;width:30mm}.kmin{left:169mm;top:38mm;width:30mm}.kmout{left:169mm;top:46mm;width:30mm}.client{left:20mm;top:54mm;width:75mm}.phone{left:20mm;top:61mm;width:45mm}.plate{left:155mm;top:62mm;width:35mm}.vin{left:20mm;top:68mm;width:75mm}.problem{left:75mm;top:92mm;width:60mm;height:28mm}.finding{left:142mm;top:92mm;width:58mm;height:28mm}.other{left:25mm;top:202mm;width:70mm;height:17mm}.obs{left:137mm;top:202mm;width:63mm;height:30mm}.mechanic{left:143mm;top:274mm;width:50mm}.testkm{left:90mm;top:245mm;width:25mm}</style></head><body><div class="p"><img src="fisa-model.jpg">${overlay('docno',s.docno)}${overlay('date',s.docdate)}${overlay('kmin',s.kmin)}${overlay('kmout',s.kmout)}${overlay('client',cl?.name)}${overlay('phone',cl?.phone)}${overlay('plate',c?.plate)}${overlay('vin',c?.vin)}${overlay('problem',s.problem)}${overlay('finding',s.finding)}${overlay('other',s.otherwork)}${overlay('obs',s.obs)}${overlay('mechanic',s.mechanic)}${overlay('testkm',s.testkm)}</div></body></html>`;
+ w.document.open();w.document.write(html);w.document.close();setTimeout(()=>w.print(),500);
 }
 function jobDetail(jid){
  let j=db.jobs.find(x=>x.id===jid),c=db.cars.find(x=>x.id===j.carId),cl=db.clients.find(x=>x.id===j.clientId);
