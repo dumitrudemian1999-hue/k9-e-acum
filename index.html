@@ -1,290 +1,68 @@
-<!doctype html>
-<html lang="ro">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<title>K-9 E ACUM</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f6f8;color:#111827}
-header{background:#111827;color:#fff;padding:18px 16px 16px;position:sticky;top:0;z-index:20}.top{display:flex;justify-content:space-between;align-items:center}.brand{font-size:23px;font-weight:900}.sub{font-size:12px;opacity:.65;margin-top:2px}
-main{max-width:760px;margin:auto;padding:15px 14px 92px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.stat{background:#fff;border-radius:17px;padding:16px;box-shadow:0 2px 12px #0000000a}.num{font-size:27px;font-weight:900}.muted{color:#6b7280;font-size:13px}
-.card{background:#fff;border-radius:17px;padding:17px;margin:0 0 13px;box-shadow:0 2px 12px #0000000a}h2,h3{margin:0 0 13px}h3{font-size:18px}
-button{border:0;border-radius:12px;padding:12px 14px;font-size:15px;font-weight:750;cursor:pointer}.primary{background:#111827;color:white}.secondary{background:#e5e7eb}.success{background:#dcfce7;color:#166534}.danger{background:#fee2e2;color:#991b1b}
-.full{width:100%}.row{display:flex;gap:9px}.row>*{flex:1}input,select,textarea{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:11px;font-size:16px;margin:5px 0 11px;background:#fff}textarea{min-height:85px;resize:vertical}
-label{font-size:13px;font-weight:750}.item{border-top:1px solid #edf0f2;padding:13px 0}.item:first-child{border-top:0}.pill{display:inline-block;border-radius:999px;background:#eef0f3;padding:5px 9px;font-size:11px;font-weight:800}.total{font-size:25px;font-weight:900;text-align:right;margin-top:13px}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:7px 4px calc(7px + env(safe-area-inset-bottom));z-index:30}.nav button{background:none;padding:6px 5px;color:#6b7280;font-size:11px}.nav button.active{color:#111827}
-.hidden{display:none!important}.search{margin-bottom:4px}.empty{text-align:center;color:#6b7280;padding:28px 8px}.photo{width:100%;border-radius:12px;margin-top:7px}
-.small{font-size:12px}.right{text-align:right}
-.sheet-actions{display:flex;gap:8px;margin-bottom:12px}.service-sheet{background:white;padding:14px;border-radius:10px;box-shadow:0 2px 12px #0000000a}.sheet-head{display:grid;grid-template-columns:20% 55% 25%;gap:7px;border-bottom:2px solid #111;padding-bottom:7px}.logoBox{background:#111;color:white;padding:15px;text-align:center;font-size:28px}.logoBox b{color:#e21d2b}.logoBox span{display:block;font-size:18px}.logoBox small{font-size:8px}.sheet-head h1{margin:2px 0;font-size:22px}.sheet-head h2{margin:0;font-size:15px}.docbox{border:1px solid #222;padding:6px}.docbox input{display:block;border:0;border-bottom:1px solid #777;width:100%;margin:2px 0 5px}.sheet-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}.sheet-row>section,.final,.sheet-footer>section{border:1px solid #aaa;padding:6px}.sheet-row p{margin:4px 0}.sheet-row textarea{width:100%;min-height:65px}.redTitle{text-align:center;font-weight:900;border-top:3px solid #d71920;border-bottom:2px solid #d71920;padding:5px;margin-top:7px}.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:5px}.sheet-cat{border:1px solid #aaa;padding:4px}.sheet-cat h4{margin:0 0 4px;font-size:10px}.sheet-cat label{display:block;font-size:8px;margin:2px 0}.sheet-row table{width:100%;border-collapse:collapse}.sheet-row th,.sheet-row td{border:1px solid #aaa;padding:3px}.sheet-row td input{width:100%;border:0}.check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}.check-grid label{font-size:9px}.sheet-footer{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:6px;margin-top:6px}.sheet-footer p{margin:4px 0}@media(max-width:650px){.sheet-head{grid-template-columns:1fr}.sheet-row,.cat-grid,.sheet-footer{grid-template-columns:1fr}.check-grid{grid-template-columns:1fr 1fr}}@media print{.sheet-actions{display:none!important}.service-sheet{box-shadow:none;padding:0}.nav,header{display:none!important}body{background:white}} .sheet-actions{display:flex;gap:7px;margin-bottom:10px;position:sticky;top:75px;z-index:10}.service-sheet{background:#fff;padding:12px;border-radius:12px}.service-sheet input,.service-sheet textarea{font-size:16px;padding:9px;margin:3px 0 7px;border:1px solid #d1d5db;border-radius:8px}.service-sheet input[type=checkbox],.service-sheet input[type=radio]{width:auto;margin-right:5px}.service-sheet .sheet-cat label{display:block;background:#f8f9fa;border-radius:7px;padding:7px;margin:3px 0}.fuel,.access{display:flex;flex-wrap:wrap;gap:7px}.fuel label,.access label{background:#f3f4f6;padding:7px;border-radius:8px}.sheet-cat h4{margin-bottom:6px}.sheet-actions button{flex:1}@media(max-width:650px){.sheet-head{grid-template-columns:1fr}.sheet-row,.cat-grid,.sheet-footer{grid-template-columns:1fr}.check-grid{grid-template-columns:1fr 1fr}.service-sheet{padding:8px}.sheet-actions{top:62px}}
-<link rel="manifest" href="manifest.json"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></head>
-<body>
-<header><div class="top"><div><div class="brand">K-9 E ACUM</div><div class="sub">SERVICE AUTO • OFFLINE</div></div><button class="secondary" onclick="quickSearch()">🔎</button></div></header>
-<main id="app"></main>
-<nav class="nav">
-<button id="n-home" onclick="go('home')">🏠<br>Acasă</button>
-<button id="n-clients" onclick="go('clients')">👤<br>Clienți</button>
-<button id="n-cars" onclick="go('cars')">🚗<br>Mașini</button>
-<button id="n-jobs" onclick="go('jobs')">🔧<br>Service</button>
-<button id="n-catalog" onclick="catalog()">🧰<br>Catalog</button><button id="n-settings" onclick="go('settings')">⚙️<br>Setări</button>
-</nav>
-<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});}</script><script>
-const KEY='K9_E_ACUM_V2';
-let db=JSON.parse(localStorage.getItem(KEY)||'{"clients":[],"cars":[],"jobs":[],"settings":{"shop":"K-9 E ACUM","currency":"lei","technicians":[],"catalog":[]}}');
-function save(){localStorage.setItem(KEY,JSON.stringify(db))}
-
-function checkPIN(){
- if(!db.settings?.pin)return true;
- const p=prompt('🔐 K-9 E ACUM\\nIntrodu PIN-ul:')||'';
- if(p===db.settings.pin)return true;
- alert('PIN greșit.'); return false;
+<!doctype html><html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#d71920"><title>K-9 E ACUM • Fișă Service</title><link rel="manifest" href="manifest.json"><style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#111;color:#111}button,input,textarea,select{font:inherit}.top{position:sticky;top:0;z-index:50;background:#111;color:#fff;padding:8px 10px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}.top b{color:#fff;margin-right:auto}.btn{border:0;border-radius:8px;padding:9px 12px;font-weight:700;cursor:pointer}.red{background:#e51b23;color:white}.light{background:#fff;color:#111}.sheetWrap{width:100%;overflow:auto;background:#222;min-height:100vh;padding:12px}.sheet{position:relative;width:1024px;height:1536px;margin:auto;background:url('fisa-model.jpg') center/100% 100% no-repeat;box-shadow:0 0 20px #000}.field{position:absolute;border:0;background:rgba(255,255,255,.78);outline:1px solid rgba(215,25,32,.15);padding:2px 5px;height:24px;font-size:13px;border-radius:3px}.field:focus{outline:2px solid #d71920;background:#fff}.sel{position:absolute;border:0;background:rgba(255,255,255,.9);height:24px;font-size:13px;padding:2px 5px;border-radius:3px}.ta{position:absolute;border:0;resize:none;background:rgba(255,255,255,.72);font-size:12px;padding:4px;outline:1px solid rgba(0,0,0,.1)}.check{position:absolute;width:18px;height:18px;accent-color:#d71920}.parts{position:absolute;left:21px;top:1085px;width:437px;height:166px;display:grid;grid-template-columns:34px 175px 103px 47px 78px;font-size:11px}.parts input{width:100%;height:16px;border:0;background:rgba(255,255,255,.72);padding:0 2px}.parts .r{display:grid;grid-template-columns:34px 175px 103px 47px 78px}.parts .r>*{border-bottom:1px solid #bbb;border-right:1px solid #bbb}.parts .r span{padding:2px}.small{font-size:11px}.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:100;align-items:flex-end}.modal.open{display:flex}.panel{background:#fff;width:100%;max-height:85vh;border-radius:18px 18px 0 0;padding:14px;overflow:auto}.panel h3{margin:0 0 10px}.search{width:100%;padding:12px;border:1px solid #bbb;border-radius:10px;margin-bottom:8px}.opts button{display:block;width:100%;text-align:left;background:#f6f6f6;border:0;border-bottom:1px solid #ddd;padding:12px}.toast{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:10px;z-index:200;display:none}.history{position:fixed;right:12px;top:55px;background:white;z-index:60;width:min(360px,90vw);border-radius:12px;padding:12px;display:none;box-shadow:0 5px 25px #000}.history.open{display:block}.item{padding:10px;border-bottom:1px solid #ddd;cursor:pointer}.hint{font-size:11px;color:#555}
+@media(max-width:700px){.sheetWrap{padding:4px}.sheet{transform-origin:top left}.top{font-size:12px}.btn{padding:8px 9px}}
+@media print{body{background:white}.top,.history,.toast{display:none!important}.sheetWrap{padding:0;overflow:visible}.sheet{box-shadow:none;margin:0;width:210mm;height:297mm;background-size:100% 100%!important}.field,.sel,.ta{background:transparent!important;outline:0!important}.check{accent-color:#000}}
+</style></head><body>
+<div class="top"><b>🚗 K-9 E ACUM • FIȘĂ SERVICE</b><button class="btn light" onclick="fit()">Încadrare</button><button class="btn light" onclick="zoom(-.1)">−</button><button class="btn light" onclick="zoom(.1)">+</button><button class="btn red" onclick="save()">💾 Salvează</button><button class="btn light" onclick="window.print()">🖨️ A4</button><button class="btn light" onclick="showHistory()">📋 Istoric</button></div>
+<div class="sheetWrap" id="wrap"><div class="sheet" id="sheet"></div></div>
+<div class="history" id="history"><b>Fișe salvate</b><div id="histList"></div><button class="btn light" onclick="showHistory()">Închide</button></div>
+<div class="modal" id="modal"><div class="panel"><h3 id="mtitle">Selectează</h3><input class="search" id="msearch" placeholder="Caută..." oninput="renderOpts()"><div class="opts" id="opts"></div><button class="btn light" onclick="closeModal()">Anulează</button></div></div><div class="toast" id="toast"></div>
+<script>
+const catalog={
+'Audi':['A1','A3','A4','A5','A6','A7','A8','Q2','Q3','Q5','Q7','Q8','TT','80','90','100','200','Cabriolet'],
+'BMW':['Seria 1','Seria 2','Seria 3','Seria 4','Seria 5','Seria 6','Seria 7','X1','X2','X3','X4','X5','X6','X7','Z3','Z4','i3','i4','iX','iX3'],
+'Mercedes-Benz':['A-Class','B-Class','C-Class','E-Class','S-Class','CLA','CLS','GLA','GLB','GLC','GLE','GLS','Vito','Sprinter'],
+'Volkswagen':['Polo','Golf','Jetta','Passat','Bora','Vento','Arteon','T-Roc','T-Cross','Tiguan','Touareg','Touran','Sharan','Caddy','Transporter','Crafter'],
+'Dacia':['Logan','Sandero','Duster','Jogger','Spring','Lodgy','Dokker','Solenza','1300','1310'],
+'Renault':['Clio','Megane','Laguna','Twingo','Scenic','Espace','Captur','Kadjar','Koleos','Austral','Arkana','Kangoo','Master','Trafic'],
+'Ford':['Fiesta','Focus','Mondeo','Fusion','Ka','Kuga','Puma','EcoSport','Edge','Explorer','Ranger','Transit','Tourneo'],
+'Opel':['Corsa','Astra','Vectra','Insignia','Zafira','Meriva','Mokka','Crossland','Grandland','Combo','Vivaro','Movano'],
+'Skoda':['Fabia','Scala','Rapid','Octavia','Superb','Kamiq','Karoq','Kodiaq','Yeti','Roomster','Enyaq'],
+'SEAT':['Ibiza','Leon','Toledo','Altea','Arona','Ateca','Tarraco'],
+'Peugeot':['107','108','206','207','208','2008','301','308','3008','408','508','5008','Partner','Expert','Boxer'],
+'Citroën':['C1','C3','C4','C5','C3 Aircross','C5 Aircross','Berlingo','Jumpy','Jumper'],
+'Toyota':['Yaris','Corolla','Camry','Avensis','Prius','Auris','C-HR','RAV4','Highlander','Land Cruiser','Hilux','Proace'],
+'Honda':['Jazz','Civic','Accord','CR-V','HR-V','FR-V','CR-Z'],
+'Nissan':['Micra','Note','Juke','Qashqai','X-Trail','Navara','Pathfinder','Leaf'],
+'Mazda':['2','3','5','6','CX-3','CX-5','CX-30','CX-60','MX-5'],
+'Kia':['Picanto','Rio','Ceed','Proceed','Stonic','Sportage','Sorento','Niro','EV6'],
+'Hyundai':['i10','i20','i30','i40','Elantra','Tucson','Santa Fe','Kona','Ioniq'],
+'Volvo':['S40','S60','S80','S90','V40','V60','V70','V90','XC40','XC60','XC90'],
+'Fiat':['Panda','Punto','Grande Punto','500','500X','Tipo','Doblo','Ducato','Fiorino'],
+'Chevrolet':['Spark','Aveo','Cruze','Lacetti','Captiva','Orlando','Trax'],
+'Mitsubishi':['Colt','Lancer','ASX','Outlander','Pajero','L200'],
+'Subaru':['Impreza','Legacy','Forester','Outback','XV'],
+'Suzuki':['Swift','SX4','Vitara','S-Cross','Jimny','Ignis'],
+'Jeep':['Renegade','Compass','Cherokee','Grand Cherokee','Wrangler','Avenger'],
+'Land Rover':['Defender','Discovery','Discovery Sport','Freelander','Range Rover','Range Rover Sport','Evoque'],
+'Porsche':['911','Cayenne','Macan','Panamera','Taycan','Boxster','Cayman']};
+const works=['1.1 Schimb ulei motor','1.2 Schimb filtru ulei','1.3 Schimb filtru aer','1.4 Schimb filtru combustibil','1.5 Schimb filtru polen','1.6 Curățare admisie','1.7 Curățare clapetă accelerație','1.8 Schimb bujii','1.9 Verificare compresie','1.10 Verificare scurgeri ulei','1.11 Reparație motor','1.12 Garnitură chiulasă','1.13 Reglaj supape','1.14 Schimb curea accesorii','1.15 Schimb întinzător curea','1.16 Schimb role','1.17 Alte lucrări motor','2.1 Schimb ulei cutie','2.2 Schimb ambreiaj','2.3 Schimb volantă','2.4 Schimb planetare','2.5 Verificare/schimb semeringuri','2.6 Reparație cutie viteze','2.7 Reparație diferențial','2.8 Reparație transmisie','2.9 Reparație transmisie automată','2.10 Schimb ulei ATF','2.11 Alte lucrări transmisie','3.1 Schimb plăcuțe frână','3.2 Schimb discuri frână','3.3 Schimb saboți frână','3.4 Schimb cilindri frână','3.5 Schimb lichid frână','3.6 Aerisire sistem frânare','3.7 Verificare etriere','3.8 Verificare furtune frână','3.9 Reglaj frână de mână','3.10 Verificare ABS','3.11 Reparare etriere','3.12 Alte lucrări frânare'];
+let data=JSON.parse(localStorage.getItem('k9current')||'{}');let zoomLevel=1, modalType='';
+function val(k){return data[k]||''} function field(k,x,y,w,h=24){let e=document.createElement('input');e.className='field';e.value=val(k);e.placeholder='';e.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px`;e.oninput=()=>data[k]=e.value;return e}
+function sel(k,x,y,w,label){let e=document.createElement('button');e.className='sel';e.textContent=val(k)||label;e.style.cssText=`left:${x}px;top:${y}px;width:${w}px`;e.onclick=()=>openSelect(k);return e}
+function ta(k,x,y,w,h){let e=document.createElement('textarea');e.className='ta';e.value=val(k);e.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px`;e.oninput=()=>data[k]=e.value;return e}
+function addCheck(k,x,y){let e=document.createElement('input');e.type='checkbox';e.className='check';e.checked=!!data[k];e.style.left=x+'px';e.style.top=y+'px';e.onchange=()=>data[k]=e.checked;return e}
+function build(){const s=document.getElementById('sheet');s.innerHTML='';
+// Header/customer/vehicle fields
+[['doc',850,25,130],['date',850,72,130],['kmin',850,120,130],['kmout',850,168,130],['client',35,250,430],['phone',35,278,220],['email',300,278,180],['address',35,307,430],['plate',720,278,250],['vin',565,307,405],['engine',565,333,215],['fuel',820,333,150]].forEach(a=>s.appendChild(field(...a)));
+s.appendChild(sel('make',565,250,205,'MARCA'));s.appendChild(sel('model',775,250,195,'MODEL'));let years=[];for(let y=2026;y>=1980;y--)years.push(y);s.appendChild(sel('year',565,278,150,'AN FABRICAȚIE'));
+s.appendChild(field('recDate',35,383,145));s.appendChild(field('recTime',225,383,90));s.appendChild(ta('decl',375,380,290,110));s.appendChild(ta('found',690,380,290,110));
+s.appendChild(ta('other',35,490,290,55));s.appendChild(ta('obs',690,490,290,55));
+// work checkboxes arranged across 10 columns, based on printed form
+for(let c=0;c<10;c++){let count=c<5?17:9;let x=34+c%5*194;let y=c<5?572:903;for(let r=0;r<count;r++)s.appendChild(addCheck('w'+c+'_'+r,x,y+r*20));}
+// final checks
+[[40,1290],[220,1290],[430,1290],[640,1290],[40,1315],[220,1315],[430,1315],[640,1315],[40,1340],[220,1340],[430,1340]].forEach((p,i)=>s.appendChild(addCheck('f'+i,...p)));
+s.appendChild(ta('returnObs',480,1130,210,105));s.appendChild(ta('recommend',720,1090,250,155));s.appendChild(field('testkm',650,1300,120));s.appendChild(field('mechanic',580,1450,210));s.appendChild(field('mechanicSig',580,1475,210));s.appendChild(field('clientName',800,1450,180));s.appendChild(field('clientSig',800,1475,180));
+// old parts returned DA/NU
+s.appendChild(addCheck('returnedYes',490,1115));s.appendChild(addCheck('returnedNo',565,1115));
+let p=document.createElement('div');p.className='parts';for(let i=0;i<10;i++){let row=document.createElement('div');row.className='r';row.innerHTML=`<span>${i+1}</span><input value="${data['p'+i+'_name']||''}"><input value="${data['p'+i+'_code']||''}"><input value="${data['p'+i+'_qty']||''}"><input value="${data['p'+i+'_obs']||''}">`;let ins=row.querySelectorAll('input');ins.forEach((el,j)=>el.oninput=()=>data['p'+i+['_name','_code','_qty','_obs'][j]]=el.value);p.appendChild(row)}s.appendChild(p);
 }
-
-function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2)}
-function esc(x=''){return String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function money(x){return (Number(x)||0).toFixed(2)+' '+db.settings.currency}
-function go(page){
- document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
- const n=document.getElementById('n-'+page);if(n)n.classList.add('active');
- ({home,clients,cars,jobs,settings}[page])();
-}
-function home(){
- const open=db.jobs.filter(x=>x.status==='În lucru'||x.status==='Programată').length;
- document.getElementById('app').innerHTML=`
- <div class="grid">
- <div class="stat"><div class="num">${db.cars.length}</div><div class="muted">Mașini</div></div>
- <div class="stat"><div class="num">${open}</div><div class="muted">În service</div></div>
- <div class="stat"><div class="num">${db.clients.length}</div><div class="muted">Clienți</div></div>
- <div class="stat"><div class="num">${db.jobs.length}</div><div class="muted">Fișe service</div></div>
- </div>
- <div class="card" style="margin-top:13px"><button class="primary full" onclick="newJob()">＋ DESCHIDE FIȘĂ SERVICE</button></div>
- <div class="card"><h3>Mașini în service</h3>${db.jobs.filter(x=>x.status!=='Predată').slice().reverse().slice(0,6).map(jobMini).join('')||'<div class="empty">Nu sunt mașini în service.</div>'}</div>
- <div class="card"><h3>Ultimele lucrări</h3>${db.jobs.slice().reverse().slice(0,5).map(jobMini).join('')||'<div class="empty">Nicio lucrare încă.</div>'}</div>`;
-}
-function jobMini(j){
- const c=db.cars.find(x=>x.id===j.carId),cl=db.clients.find(x=>x.id===j.clientId);
- return `<div class="item"><b>${esc(c?.plate||'Fără număr')}</b> — ${esc(c?.make||'')} ${esc(c?.model||'')}<br><span class="muted">${esc(cl?.name||'')} • ${esc(j.problem||'Fără problemă')}</span><br><span class="pill">${esc(j.status)}</span> <b>${money(j.total)}</b> <button class="secondary" onclick="jobDetail('${j.id}')">Fișa</button></div>`;
-}
-function clients(){
- document.getElementById('app').innerHTML=`<div class="card"><button class="primary" onclick="clientForm()">＋ Client nou</button></div><div class="card"><input class="search" placeholder="🔎 Caută nume sau telefon" oninput="renderClients(this.value)"><div id="list"></div></div>`;
- renderClients('');
-}
-function renderClients(q){
- q=(q||'').toLowerCase();let arr=db.clients.filter(c=>(c.name+' '+c.phone).toLowerCase().includes(q));
- document.getElementById('list').innerHTML=arr.map(c=>`<div class="item"><b>${esc(c.name)}</b><br><span class="muted">📞 ${esc(c.phone||'-')}</span><br><button class="secondary" onclick="clientDetail('${c.id}')">Deschide</button></div>`).join('')||'<div class="empty">Nu există clienți.</div>';
-}
-function clientForm(){
- document.getElementById('app').innerHTML=`<div class="card"><h2>Client nou</h2><label>Nume și prenume</label><input id="name"><label>Telefon</label><input id="phone" type="tel"><label>Observații</label><textarea id="notes"></textarea><div class="row"><button class="secondary" onclick="go('clients')">Anulează</button><button class="primary" onclick="saveClient()">Salvează</button></div></div>`;
-}
-function saveClient(){let name=document.getElementById('name').value.trim();if(!name)return alert('Introdu numele.');db.clients.push({id:id(),name,phone:document.getElementById('phone').value.trim(),notes:document.getElementById('notes').value.trim()});save();go('clients')}
-function clientDetail(cid){
- let c=db.clients.find(x=>x.id===cid),cs=db.cars.filter(x=>x.clientId===cid);
- document.getElementById('app').innerHTML=`<div class="card"><h2>${esc(c.name)}</h2><div class="muted">📞 ${esc(c.phone||'-')}</div><p>${esc(c.notes||'')}</p><button class="primary" onclick="carForm('${cid}')">＋ Adaugă mașină</button></div><div class="card"><h3>Mașinile clientului</h3>${cs.map(carMini).join('')||'<div class="empty">Nicio mașină.</div>'}</div><button class="secondary" onclick="go('clients')">← Înapoi</button>`;
-}
-function carMini(c){return `<div class="item"><b>${esc(c.plate)}</b> — ${esc(c.make)} ${esc(c.model)}</b><br><span class="muted">${esc(c.engine||'')} • ${esc(c.year||'-')} • ${esc(c.km||0)} km</span><br><button class="secondary" onclick="carDetail('${c.id}')">Deschide</button></div>`}
-function cars(){
- document.getElementById('app').innerHTML=`<div class="card"><button class="primary" onclick="carForm()">＋ Mașină nouă</button></div><div class="card"><input placeholder="🔎 Număr / VIN / marcă / model" oninput="renderCars(this.value)"><div id="list"></div></div>`;renderCars('');
-}
-function renderCars(q){
- q=(q||'').toLowerCase();let arr=db.cars.filter(c=>(c.plate+' '+c.vin+' '+c.make+' '+c.model).toLowerCase().includes(q));
- document.getElementById('list').innerHTML=arr.map(carMini).join('')||'<div class="empty">Nu există mașini.</div>';
-}
-function carForm(cid){
- if(!cid&&!db.clients.length){alert('Adaugă mai întâi un client.');return go('clients')}
- document.getElementById('app').innerHTML=`<div class="card"><h2>Mașină nouă</h2><label>Client</label><select id="cid">${db.clients.map(c=>`<option value="${c.id}" ${c.id===cid?'selected':''}>${esc(c.name)} — ${esc(c.phone)}</option>`).join('')}</select>
- <div class="row"><div><label>Număr auto</label><input id="plate"></div><div><label>An</label><input id="year" inputmode="numeric"></div></div>
- <div class="row"><div><label>Marcă</label><input id="make"></div><div><label>Model</label><input id="model"></div></div>
- <label>Motor / cilindree</label><input id="engine" placeholder="ex. 1.6 MPI / 2.8 V6">
- <label>VIN</label><input id="vin">
- <label>Kilometraj</label><input id="km" inputmode="numeric">
- <div class="row"><button class="secondary" onclick="go('cars')">Anulează</button><button class="primary" onclick="saveCar()">Salvează</button></div></div>`;
-}
-function saveCar(){
- let plate=document.getElementById('plate').value.trim();if(!plate)return alert('Introdu numărul auto.');
- db.cars.push({id:id(),clientId:document.getElementById('cid').value,plate,year:document.getElementById('year').value,make:document.getElementById('make').value.trim(),model:document.getElementById('model').value.trim(),engine:document.getElementById('engine').value.trim(),vin:document.getElementById('vin').value.trim(),km:Number(document.getElementById('km').value)||0});save();go('cars');
-}
-function carDetail(cid){
- let c=db.cars.find(x=>x.id===cid),cl=db.clients.find(x=>x.id===c.clientId),js=db.jobs.filter(x=>x.carId===cid);
- document.getElementById('app').innerHTML=`<div class="card"><h2>${esc(c.plate)}</h2><b>${esc(c.make)} ${esc(c.model)}</b><p class="muted">${esc(c.engine||'')} • ${esc(c.year||'-')} • ${esc(c.km||0)} km<br>VIN: ${esc(c.vin||'-')}<br>Client: ${esc(cl?.name||'-')}</p><button class="primary" onclick="newJob('${cid}')">＋ Lucrare nouă</button></div><div class="card"><h3>Istoric reparații</h3>${js.slice().reverse().map(jobMini).join('')||'<div class="empty">Nicio reparație înregistrată.</div>'}</div><button class="secondary" onclick="go('cars')">← Înapoi</button>`;
-}
-function jobs(){
- document.getElementById('app').innerHTML=`<div class="card"><button class="primary" onclick="newJob()">＋ Fișă service nouă</button></div><div class="card"><h3>Fișe service</h3><input placeholder="🔎 Caută număr auto / client" oninput="renderJobs(this.value)"><div id="joblist"></div></div>`;renderJobs('');
-}
-function renderJobs(q){
- q=(q||'').toLowerCase();let arr=db.jobs.filter(j=>{let c=db.cars.find(x=>x.id===j.carId),cl=db.clients.find(x=>x.id===j.clientId);return ((c?.plate||'')+' '+(cl?.name||'')).toLowerCase().includes(q)});
- document.getElementById('joblist').innerHTML=arr.slice().reverse().map(jobMini).join('')||'<div class="empty">Nu există fișe.</div>';
-}
-function newJob(carId){
- if(!db.cars.length){alert('Adaugă mai întâi client și mașină.');return go('clients')}
- let selected=carId||db.cars[0].id;
- document.getElementById('app').innerHTML=`<div class="card"><h2>Fișă service nouă</h2><label>Mașină</label><select id="car">${db.cars.map(c=>`<option value="${c.id}" ${c.id===selected?'selected':''}>${esc(c.plate)} — ${esc(c.make)} ${esc(c.model)}</option>`).join('')}</select>
- <label>Status</label><select id="status"><option>Programată</option><option selected>În lucru</option><option>Gata</option><option>Predată</option></select>
- <label>Problema reclamată de client</label><textarea id="problem" placeholder="Ce spune clientul?"></textarea>
- <label>Diagnostic mecanic</label><textarea id="diag" placeholder="Ce ai constatat?"></textarea>
- <label>Lucrare rapidă din catalog</label><select id="catalogPick" onchange="applyCatalog()"><option value="">— alege lucrare —</option>${(db.settings.catalog||defaultCatalog()).map(x=>`<option value="${x.id}">${esc(x.name)} — ${money(x.price)}</option>`).join('')}</select>
- <label>Lucrări efectuate</label><textarea id="work" placeholder="Ex. schimbat plăcuțe, ulei, filtre..."></textarea>
- <label>Piese (denumire + preț)</label><textarea id="parts" placeholder="Ex. Plăcuțe frână = 450&#10;Ulei motor = 300"></textarea>
- <div class="row"><div><label>Total piese</label><input id="ptotal" type="number" value="0" oninput="calc()"></div><div><label>Manoperă</label><input id="labor" type="number" value="0" oninput="calc()"></div></div>
- <label>Kilometraj la intrare</label><input id="jobkm" type="number">
- <label>Observații</label><textarea id="obs"></textarea>
- <div class="total" id="sum">TOTAL 0.00 lei</div>
- <div class="row"><button class="secondary" onclick="go('jobs')">Anulează</button><button class="primary" onclick="saveJob()">Salvează fișa</button></div></div>`;
-}
-function applyCatalog(){
- const sel=document.getElementById('catalogPick'),x=(db.settings.catalog||defaultCatalog()).find(x=>x.id===sel.value);if(!x)return;
- const w=document.getElementById('work');w.value=w.value?(w.value+', '+x.name):x.name;
- document.getElementById('labor').value=Number(document.getElementById('labor').value||0)+Number(x.price||0);calc();
-}
-function calc(){let a=Number(document.getElementById('ptotal')?.value)||0,b=Number(document.getElementById('labor')?.value)||0;document.getElementById('sum').textContent='TOTAL '+money(a+b)}
-function saveJob(){
- let car=db.cars.find(x=>x.id===document.getElementById('car').value),p=Number(document.getElementById('ptotal').value)||0,l=Number(document.getElementById('labor').value)||0;
- if(document.getElementById('jobkm').value)car.km=Number(document.getElementById('jobkm').value);
- db.jobs.push({id:id(),clientId:car.clientId,carId:car.id,status:document.getElementById('status').value,problem:document.getElementById('problem').value.trim(),diagnosis:document.getElementById('diag').value.trim(),work:document.getElementById('work').value.trim(),parts:document.getElementById('parts').value.trim(),partsTotal:p,labor:l,total:p+l,obs:document.getElementById('obs').value.trim(),date:new Date().toLocaleString('ro-RO'),photoBefore:'',photoAfter:''});save();jobDetail(db.jobs.at(-1).id)
-}
-
-
-function detailedSheet(jid){
- const j=db.jobs.find(x=>x.id===jid), c=db.cars.find(x=>x.id===j.carId), cl=db.clients.find(x=>x.id===j.clientId);
- j.sheet=j.sheet||{}; const s=j.sheet, checks=s.checks||{};
- const works=['Schimb ulei motor','Schimb filtru ulei','Schimb filtru aer','Schimb filtru combustibil','Curățare admisie','Curățare clapetă accelerație','Bujii','Verificare compresie','Verificare scurgeri ulei','Reparație motor','Garnitură chiulasă','Reglaj supape','Schimb curea accesorii','Schimb întinzător curea','Schimb role','Alte lucrări motor','Schimb ulei cutie','Schimb ambreiaj','Schimb volantă','Schimb planetare','Verificare / schimb semeringuri','Reparație cutie viteze','Reparație diferențial','Reparație transmisie','Reparație transmisie automată','Schimb ulei ATF','Alte lucrări transmisie','Schimb plăcuțe frână','Schimb discuri frână','Schimb saboți frână','Schimb cilindri frână','Schimb lichid frână','Aerisire sistem frână','Verificare etriere','Verificare furtune frână','Reglaj frână de mână','Verificare ABS','Reparare etriere','Alte lucrări frână','Schimb amortizoare','Schimb arcuri','Schimb brațe suspensie','Schimb bielete antiruliu','Schimb bucși','Schimb capete bară','Geometrie / reglaj direcție','Verificare direcție','Schimb bieletă direcție','Schimb casetă direcție','Verificare servodirecție','Alte lucrări suspensie','Test baterie','Încărcare / înlocuire baterie','Verificare alternator','Verificare demaror','Verificare instalație','Diagnoză computerizată','Reset erori','Verificare lumini','Schimb becuri / lămpi','Verificare senzori','Reparație instalație','Alte lucrări electrice'];
- const finals=['Motor funcționează normal','Fără scurgeri de ulei','Fără scurgeri de antigel','Sistem frânare verificat','Direcție verificată','Suspensie verificată','Instalație electrică verificată','A/C funcțional','Fără erori în calculator','Toate luminile funcționale','Test rutier efectuat'];
- const workBoxes=works.map((x,i)=>`<label class="ov-check" style="left:${18+(i%5)*199}px;top:${555+Math.floor(i/5)*25}px"><input type="checkbox" data-work="${esc(x)}" ${checks[x]?'checked':''}> </label>`).join('');
- const finalBoxes=finals.map((x,i)=>`<label class="ov-check" style="left:${35+(i%4)*235}px;top:${1300+Math.floor(i/4)*28}px"><input type="checkbox" data-final="${esc(x)}" ${checks[x]?'checked':''}> </label>`).join('');
- document.getElementById('app').innerHTML=`<div class="exact-toolbar"><button class="secondary" onclick="jobDetail('${jid}')">← Înapoi</button><button class="primary" onclick="saveExactSheet('${jid}')">💾 Salvează</button><button class="success" onclick="printExactSheet('${jid}')">📄 A4</button></div>
- <div class="exact-wrap"><div class="exact-sheet" id="exactSheet">
- <img src="fisa-model.jpg" class="exact-bg">
- ${workBoxes}${finalBoxes}
- <input class="ov-text docno" id="x_docno" value="${esc(s.docno||j.id.slice(-6).toUpperCase())}" placeholder="Nr. document">
- <input class="ov-text date" id="x_date" value="${esc(s.docdate||j.date.split(',')[0])}">
- <input class="ov-text kmin" id="x_kmin" value="${esc(s.kmin||'')}">
- <input class="ov-text kmout" id="x_kmout" value="${esc(s.kmout||c.km||'')}">
- <input class="ov-text clientname" value="${esc(cl?.name||'')}" readonly>
- <input class="ov-text phone" value="${esc(cl?.phone||'')}" readonly>
- <input class="ov-text email" id="x_email" value="${esc(s.email||'')}">
- <input class="ov-text address" id="x_address" value="${esc(s.address||'')}">
- <input class="ov-text plate" value="${esc(c.plate||'')}" readonly>
- <input class="ov-text vin" value="${esc(c.vin||'')}" readonly>
- <input class="ov-text problem" id="x_problem" value="${esc(s.problem||j.problem||'')}">
- <input class="ov-text finding" id="x_finding" value="${esc(s.finding||j.diagnosis||'')}">
- <textarea class="ov-area other" id="x_other">${esc(s.otherwork||'')}</textarea>
- <textarea class="ov-area obs" id="x_obs">${esc(s.obs||j.obs||'')}</textarea>
- <input class="ov-text mechanic" id="x_mechanic" value="${esc(s.mechanic||'')}">
- <input class="ov-text testkm" id="x_testkm" value="${esc(s.testkm||c.km||'')}">
- </div></div>
- <div class="card"><b>💡 Cum lucrezi:</b> bifezi direct pe formular ce ai făcut și scrii rapid modificările/observațiile în câmpurile de pe fișă. La <b>Salvează</b>, totul rămâne în istoricul mașinii.</div>`;
-}
-function saveExactSheet(jid){
- const j=db.jobs.find(x=>x.id===jid),c=db.cars.find(x=>x.id===j.carId),s=j.sheet=j.sheet||{};
- const v=id=>document.getElementById(id)?.value||'';
- Object.assign(s,{docno:v('x_docno'),docdate:v('x_date'),kmin:v('x_kmin'),kmout:v('x_kmout'),email:v('x_email'),address:v('x_address'),problem:v('x_problem'),finding:v('x_finding'),otherwork:v('x_other'),obs:v('x_obs'),mechanic:v('x_mechanic'),testkm:v('x_testkm')});
- s.checks={};document.querySelectorAll('[data-work],[data-final]').forEach(x=>{if(x.checked)s.checks[x.dataset.work||x.dataset.final]=true});
- j.problem=s.problem;j.diagnosis=s.finding;j.obs=s.obs;if(s.kmout)c.km=Number(s.kmout)||c.km;save();alert('Fișa a fost salvată.')}
-function printExactSheet(jid){
- saveExactSheet(jid);
- const j=db.jobs.find(x=>x.id===jid), s=j?.sheet||{}, c=db.cars.find(x=>x.id===j?.carId), cl=db.clients.find(x=>x.id===j?.clientId);
- const overlay=(cls,val)=>`<div class="ptext ${cls}">${esc(val||'')}</div>`;
- const w=window.open('','_blank');if(!w)return;
- const html=`<html><head><title>K-9 E ACUM - Act de constatare</title><style>
- @page{size:A4 portrait;margin:0}html,body{margin:0;padding:0;width:210mm;height:297mm}body{font-family:Arial,sans-serif}.p{position:relative;width:210mm;height:297mm}.p img{position:absolute;inset:0;width:210mm;height:297mm;image-rendering:auto}.ptext{position:absolute;font-size:8pt;font-weight:600;overflow:hidden;white-space:pre-wrap}.docno{left:169mm;top:15mm;width:30mm}.date{left:169mm;top:27mm;width:30mm}.kmin{left:169mm;top:38mm;width:30mm}.kmout{left:169mm;top:46mm;width:30mm}.client{left:20mm;top:54mm;width:75mm}.phone{left:20mm;top:61mm;width:45mm}.plate{left:155mm;top:62mm;width:35mm}.vin{left:20mm;top:68mm;width:75mm}.problem{left:75mm;top:92mm;width:60mm;height:28mm}.finding{left:142mm;top:92mm;width:58mm;height:28mm}.other{left:25mm;top:202mm;width:70mm;height:17mm}.obs{left:137mm;top:202mm;width:63mm;height:30mm}.mechanic{left:143mm;top:274mm;width:50mm}.testkm{left:90mm;top:245mm;width:25mm}</style></head><body><div class="p"><img src="fisa-model.jpg">${overlay('docno',s.docno)}${overlay('date',s.docdate)}${overlay('kmin',s.kmin)}${overlay('kmout',s.kmout)}${overlay('client',cl?.name)}${overlay('phone',cl?.phone)}${overlay('plate',c?.plate)}${overlay('vin',c?.vin)}${overlay('problem',s.problem)}${overlay('finding',s.finding)}${overlay('other',s.otherwork)}${overlay('obs',s.obs)}${overlay('mechanic',s.mechanic)}${overlay('testkm',s.testkm)}</div></body></html>`;
- w.document.open();w.document.write(html);w.document.close();setTimeout(()=>w.print(),500);
-}
-function jobDetail(jid){
- let j=db.jobs.find(x=>x.id===jid),c=db.cars.find(x=>x.id===j.carId),cl=db.clients.find(x=>x.id===j.clientId);
- document.getElementById('app').innerHTML=`<div class="card"><h2>Fișă #${esc(j.id.slice(-5).toUpperCase())}</h2><b>${esc(c.plate)} — ${esc(c.make)} ${esc(c.model)}</b><p class="muted">${esc(cl?.name||'')} • ${esc(j.date)}<br>${esc(c.engine||'')} • ${esc(c.km||0)} km</p><span class="pill">${esc(j.status)}</span></div>
- <div class="card"><h3>Diagnostic și lucrări</h3><label>Problema clientului</label><p>${esc(j.problem)||'-'}</p><label>Diagnostic</label><p>${esc(j.diagnosis)||'-'}</p><label>Lucrări</label><p>${esc(j.work)||'-'}</p><label>Piese</label><p>${esc(j.parts)||'-'}</p><label>Observații</label><p>${esc(j.obs)||'-'}</p></div>
- <div class="card"><div class="row"><div>Piese<br><b>${money(j.partsTotal)}</b></div><div>Manoperă<br><b>${money(j.labor)}</b></div></div><div class="total">TOTAL ${money(j.total)}</div></div>
- <div class="card"><h3>Fotografii</h3><label>Poze înainte</label><input type="file" accept="image/*" capture="environment" onchange="photo('${j.id}','before',this)">
- <label>Poze după</label><input type="file" accept="image/*" capture="environment" onchange="photo('${j.id}','after',this)">
- ${j.photoBefore?`<img class="photo" src="${j.photoBefore}">`:''}${j.photoAfter?`<img class="photo" src="${j.photoAfter}">`:''}</div>
- <div class="row"><button class="secondary" onclick="go('jobs')">← Înapoi</button><button class="success" onclick="printJob('${j.id}')">📄 Fișă / Print</button></div>`;
-}
-function photo(jid,type,input){
- let f=input.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{let j=db.jobs.find(x=>x.id===jid);if(type==='before')j.photoBefore=r.result;else j.photoAfter=r.result;save();jobDetail(jid)};r.readAsDataURL(f);
-}
-function printJob(jid){
- let j=db.jobs.find(x=>x.id===jid),c=db.cars.find(x=>x.id===j.carId),cl=db.clients.find(x=>x.id===j.clientId);
- let w=window.open('','_blank');if(!w)return;
- w.document.write(`<html><head><title>K-9 E ACUM</title><style>body{font-family:Arial;padding:30px}h1{margin-bottom:3px}.line{border-top:1px solid #ddd;padding:10px 0}.total{font-size:22px;font-weight:bold;text-align:right}</style><link rel="manifest" href="manifest.json"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></head><body><h1>K-9 E ACUM</h1><div>FIȘĂ SERVICE</div><hr><p><b>Client:</b> ${esc(cl?.name||'')}<br><b>Telefon:</b> ${esc(cl?.phone||'-')}<br><b>Mașină:</b> ${esc(c.plate)} — ${esc(c.make)} ${esc(c.model)}<br><b>VIN:</b> ${esc(c.vin||'-')}<br><b>Km:</b> ${esc(c.km||0)}</p><div class="line"><b>Problemă:</b><br>${esc(j.problem)}</div><div class="line"><b>Diagnostic:</b><br>${esc(j.diagnosis)}</div><div class="line"><b>Lucrări:</b><br>${esc(j.work)}</div><div class="line"><b>Piese:</b><br>${esc(j.parts)}</div><p>Piese: ${money(j.partsTotal)}<br>Manoperă: ${money(j.labor)}</p><div class="total">TOTAL: ${money(j.total)}</div><p>Data: ${esc(j.date)}</p><script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()
-}
-function settings(){
- const s=serviceSummary(), techs=db.settings.technicians||[], cat=db.settings.catalog||defaultCatalog();
- db.settings.catalog=cat;
- document.getElementById('app').innerHTML=`<div class="card"><h2>⚙️ Setări service</h2>
- <label>Numele service-ului</label><input id="shop" value="${esc(db.settings.shop)}">
- <label>Telefon service</label><input id="shopPhone" value="${esc(db.settings.shopPhone||'')}">
- <label>Adresă</label><input id="shopAddress" value="${esc(db.settings.shopAddress||'')}">
- <label>Monedă</label><select id="currency"><option ${db.settings.currency==='lei'?'selected':''}>lei</option><option ${db.settings.currency==='€'?'selected':''}>€</option><option ${db.settings.currency==='$'?'selected':''}>$</option></select>
- <button class="primary full" onclick="saveSettings()">💾 Salvează setările</button></div>
-
- <div class="card"><h3>🔐 Acces mecanici</h3>
- <p class="muted">Poți proteja aplicația cu un PIN. PIN-ul este salvat local pe telefon.</p>
- <div class="row"><button class="secondary" onclick="setPIN()">🔑 ${db.settings.pin?'Schimbă PIN':'Setează PIN'}</button>
- ${db.settings.pin?'<button class="danger" onclick="removePIN()">Dezactivează PIN</button>':''}</div></div>
-
- <div class="card"><h3>👨‍🔧 Mecanici</h3>
- ${techs.map(t=>`<div class="item"><b>${esc(t.name)}</b> <button class="danger right" onclick="deleteTechnician('${t.id}')">Șterge</button></div>`).join('')||'<div class="muted">Niciun mecanic adăugat.</div>'}
- <button class="secondary" onclick="addTechnician()">＋ Adaugă mecanic</button></div>
-
- <div class="card"><h3>🧰 Catalog lucrări și prețuri</h3>
- <p class="muted">Aici setezi lucrările folosite cel mai des și prețul manoperei.</p>
- ${cat.map(x=>`<div class="item"><b>${esc(x.name)}</b><br><span class="muted">Manoperă: ${money(x.price)}</span> <button class="secondary" onclick="editCatalog('${x.id}')">Editează</button> <button class="danger" onclick="deleteCatalog('${x.id}')">Șterge</button></div>`).join('')}
- <button class="primary" onclick="addCatalog()">＋ Adaugă lucrare</button></div>
-
- <div class="card"><h3>📊 Raport service</h3>
- <div class="row"><div><b>${money(s.revenue)}</b><br><span class="muted">Încasări</span></div><div><b>${money(s.labor)}</b><br><span class="muted">Manoperă</span></div></div>
- <p><b>${money(s.parts)}</b> — valoare piese</p>
- <button class="secondary" onclick="exportCSV()">⬇️ Export Excel / CSV</button></div>
-
- <div class="card"><h3>💾 Date și backup</h3>
- <p class="muted">Datele rămân pe telefon. Fă backup periodic, mai ales înainte de schimbarea telefonului.</p>
- <button class="primary" onclick="backup()">⬇️ Export backup</button>
- <button class="secondary" onclick="document.getElementById('restore').click()">⬆️ Import backup</button>
- <input id="restore" type="file" accept=".json" class="hidden" onchange="restore(this)">
- </div>
-
- <div class="card"><h3>ℹ️ Despre</h3><p><b>K-9 E ACUM</b><br>Service Auto • Offline • Versiune completă</p>
- <button class="danger" onclick="if(confirm('Ștergi toate datele service-ului? Această operație nu poate fi anulată.')){localStorage.removeItem(KEY);location.reload()}">🗑️ Șterge toate datele</button></div>`;
-}
-
-function defaultCatalog(){return[
-{id:id(),name:'Schimb ulei',price:150},{id:id(),name:'Schimb filtre',price:100},
-{id:id(),name:'Plăcuțe frână față',price:200},{id:id(),name:'Plăcuțe frână spate',price:250},
-{id:id(),name:'Discuri + plăcuțe',price:350},{id:id(),name:'Diagnoză OBD',price:100},
-{id:id(),name:'Schimb baterie',price:80},{id:id(),name:'Suspensie față',price:300},
-{id:id(),name:'Distribuție',price:800},{id:id(),name:'Climatizare',price:150}
-]}
-function addTechnician(){
- db.settings.technicians=db.settings.technicians||[];
- const name=prompt('Numele mecanicului:')||''; if(!name)return;
- db.settings.technicians.push({id:id(),name});save();settings();
-}
-function deleteTechnician(tid){if(confirm('Ștergi mecanicul?')){db.settings.technicians=(db.settings.technicians||[]).filter(x=>x.id!==tid);save();settings()}}
-function addCatalog(){
- const name=prompt('Denumirea lucrării:')||'';if(!name)return;
- const price=Number(prompt('Preț manoperă (lei):')||0);
- db.settings.catalog=db.settings.catalog||defaultCatalog();db.settings.catalog.push({id:id(),name,price});save();settings()
-}
-function editCatalog(cid){
- const x=(db.settings.catalog||[]).find(x=>x.id===cid);if(!x)return;
- const name=prompt('Denumire:',x.name);if(name===null)return;
- const price=Number(prompt('Preț manoperă:',x.price)||0);x.name=name;x.price=price;save();settings()
-}
-function deleteCatalog(cid){if(confirm('Ștergi lucrarea din catalog?')){db.settings.catalog=(db.settings.catalog||[]).filter(x=>x.id!==cid);save();settings()}}
-function setPIN(){
- const p=prompt('Alege un PIN de 4-6 cifre:')||'';if(!/^\d{4,6}$/.test(p))return alert('PIN invalid.');
- const p2=prompt('Repetă PIN-ul:')||'';if(p!==p2)return alert('PIN-urile nu coincid.');
- db.settings.pin=p;save();alert('PIN activat.');settings()
-}
-function removePIN(){const p=prompt('Introdu PIN-ul actual:')||'';if(p!==db.settings.pin)return alert('PIN greșit.');delete db.settings.pin;save();settings()}
-function saveSettings(){
- db.settings.shop=document.getElementById('shop').value.trim()||'K-9 E ACUM';
- db.settings.shopPhone=document.getElementById('shopPhone').value.trim();
- db.settings.shopAddress=document.getElementById('shopAddress').value.trim();
- db.settings.currency=document.getElementById('currency').value;
- save();alert('Setările au fost salvate.');settings()
-}
-function backup(){let b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='K9_E_ACUM_backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),500)}
-function restore(inp){let f=inp.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{db=JSON.parse(r.result);save();alert('Backup restaurat.');go('home')}catch(e){alert('Backup invalid.')}};r.readAsText(f)}
-go('home');
-</script>
-</body></html>
+function openSelect(k){modalType=k;document.getElementById('modal').classList.add('open');document.getElementById('msearch').value='';document.getElementById('mtitle').textContent=k==='make'?'Selectează marca':k==='model'?'Selectează modelul':'Selectează anul';renderOpts();setTimeout(()=>document.getElementById('msearch').focus(),50)}
+function renderOpts(){let q=document.getElementById('msearch').value.toLowerCase(),arr;if(modalType==='make')arr=Object.keys(catalog);else if(modalType==='model')arr=catalog[data.make]||[];else arr=Array.from({length:47},(_,i)=>String(2026-i));arr=arr.filter(x=>x.toLowerCase().includes(q));document.getElementById('opts').innerHTML=arr.map(x=>`<button onclick="choose(${JSON.stringify(x)})">${x}</button>`).join('')||'<div class="hint">Nu am găsit. Poți adăuga ulterior marca/modelul.</div>'}
+function choose(x){data[modalType]=x;if(modalType==='make'){data.model=''}closeModal();build()};function closeModal(){document.getElementById('modal').classList.remove('open')}
+function save(){localStorage.setItem('k9current',JSON.stringify(data));let h=JSON.parse(localStorage.getItem('k9history')||'[]');h.unshift({id:Date.now(),date:new Date().toLocaleString('ro-RO'),make:data.make||'',model:data.model||'',plate:data.plate||'',data:{...data}});h=h.slice(0,50);localStorage.setItem('k9history',JSON.stringify(h));toast('Fișa a fost salvată.')}function toast(t){let e=document.getElementById('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',1800)}
+function showHistory(){let e=document.getElementById('history');e.classList.toggle('open');let h=JSON.parse(localStorage.getItem('k9history')||'[]');document.getElementById('histList').innerHTML=h.length?h.map((a,i)=>`<div class=item onclick="loadHist(${i})"><b>${a.make||'Fără marcă'} ${a.model||''}</b><br>${a.plate||'Fără nr.'} • ${a.date}</div>`).join(''):'<div class=hint>Nicio fișă salvată.</div>'}
+function loadHist(i){let h=JSON.parse(localStorage.getItem('k9history')||'[]');data=h[i].data;localStorage.setItem('k9current',JSON.stringify(data));build();showHistory();toast('Fișa a fost încărcată.')}
+function fit(){zoomLevel=Math.min(1,(innerWidth-10)/1024);document.getElementById('sheet').style.transform=`scale(${zoomLevel})`;document.getElementById('wrap').style.height=(1536*zoomLevel+20)+'px'}function zoom(d){zoomLevel=Math.max(.45,Math.min(1.6,zoomLevel+d));document.getElementById('sheet').style.transform=`scale(${zoomLevel})`;document.getElementById('wrap').style.height=(1536*zoomLevel+20)+'px'}
+build();setTimeout(fit,50);
+</script></body></html>
