@@ -5,7 +5,5 @@
   "display": "standalone",
   "background_color": "#f5f6f8",
   "theme_color": "#111827",
-  "orientation": "portrait",
-  "description": "Aplica\u021bie offline pentru administrarea unui service auto.",
-  "icons": []
+  "orientation": "portrait"
 }
